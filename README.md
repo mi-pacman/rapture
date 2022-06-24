@@ -1,4 +1,4 @@
-# Rapture
+# Rapture by Megacorp Industries
 ```
         ___________ 
        /           \ 
