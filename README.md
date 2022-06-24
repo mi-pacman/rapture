@@ -13,3 +13,5 @@
 
 ```
 Welcome to Rapture! An underground alternative for the 21st century.
+
+The stack architecture draft can be found in "draft-stack.txt".
