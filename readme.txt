@@ -1,0 +1,18 @@
+######################
+###TOP_OF_THE_STACK###
+######################
+
+Arbitrary Appliaction
+^
+Native Cloud Kubernetes Cluster
+^
+Arbitrary Cloud Provider
+^
+Terraform (Iaas)
+^
+Jenkins (CI/CD Pipeline)
+
+#########################
+###BOTTOM_OF_THE_STACK###
+#########################
+​
