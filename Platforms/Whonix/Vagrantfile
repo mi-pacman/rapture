@@ -1,0 +1,4 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "cloudkats/whonix-gateway"
+  config.vm.box_version = "15.0.0.6.6"
+end
