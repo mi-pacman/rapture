@@ -1,13 +1,27 @@
+$default_network_interface = `ip route | awk '/^default/ {printf "%s", $5; exit 0}'` # Set network interface to this variable
+
 Vagrant.configure("2") do |config|
 
   config.vm.box = "generic/debian11"
+  
+  config.vm.synced_folder ".", "/home/vagrant" # Sync main folder with home directory in VM
 
-  config.vm.network "public_network" #Create bridged network
+  config.vm.network "public_network", bridge: "#$default_network_interface" # Automatically set the network interface for bridged network
 
   config.vm.provider "virtualbox" do |vb|
-
-     vb.memory = "8192" # Customize the amount of memory on the VM:
-
+     vb.memory = "8192" # Set memory on the VM:
   end
 
+  config.vm.provision "shell", inline: <<-SHELL
+    # Configure repository and install Virtualbox
+    apt-get update
+    apt-get install fasttrack-archive-keyring
+    echo 'deb https://fasttrack.debian.net/debian/ bullseye-fasttrack main contrib non-free' | sudo tee /etc/apt/sources.list.d/fasttrack.list
+    apt-get update
+    apt install -y virtualbox linux-headers-$(dpkg --print-architecture)
+    adduser vagrant vboxusers
+
+    apt install -y apt-cacher-ng time
+    git clone --depth=1 --branch 16.0.5.3-stable --jobs=4 --recurse-submodules --shallow-submodules https://github.com/derivative-maker/derivative-maker.git
+  SHELL
 end
