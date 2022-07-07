@@ -3,23 +3,28 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "terrywang/archlinux"
-  #config.vm.provider "virtualbox" do |vb|
-    #vb.memory = "1024"  # Customize the amount of memory on the VM:
-  #end
+
   config.vm.provision "shell", inline: <<-SHELL
+    ##########################
+    ###SYSTEM_CONFIGURATION###
+    ##########################
     timedatectl set-timezone Australia/Adelaide  # Set timezone to Adelaide
-    echo "docker-controller" > /etc/hostname  # Change the hostname
-    pacman -Sy && pacman -S --noconfirm docker docker-compose  # Update repositories, install docker and compose
+    echo "local-controller" > /etc/hostname  # Change the hostname
     systemctl enable systemd-timesyncd  # Enable timesync daemon on boot
-    systemctl enable docker  # Enable docker daemon on boot
-    groupadd pacman  # Create pacman group
-    useradd -m -g pacman -G wheel -s /bin/bash pacman  # Create user pacman
-    echo "pacman:changeme" | chpasswd  # Change pacmans password to changeme
     echo "vagrant:changeme" | chpasswd  # Change vagrants password to changeme
-    echo "pacman ALL=(ALL:ALL) ALL" > /etc/sudoers.d/pacman  # Add pacman to sudoers
-    cp .bashrc .tmux.conf .viminfo .vimrc /home/pacman  # Copy program configs to pacmans home dir
     userdel terry  # Delete user terry
-    #rm /etc/sudoers.d/vagrant  # Remove user vagrant from sudoers
+    git clone https://github.com/mi-pacman/cloud-controller.git
+    chown -R vagrant:vagrant /home/vagrant/cloud-controller
+
+    ##########################
+    ###DOCKER_CONFIGURATION###
+    ##########################
+    pacman -Sy && pacman -S --noconfirm docker docker-compose  # Update repositories, install docker and compose
+    systemctl enable docker && systemctl start docker  # Enable and start docker daemon on boot
+    docker pull amazon/aws-cli  # Pull AWS-CLI docker image
+    docker pull pacman369/rapture:terraform-controller  # Pull custom terraform container image
+    docker pull pacman369/rapture:packer-controller  # Pull custom packer container image
+
     reboot
   SHELL
 end
