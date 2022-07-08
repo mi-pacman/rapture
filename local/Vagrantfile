@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
     pacman -Sy  # Update repos
     pacman -S --noconfirm docker docker-compose  # Update repositories, install docker and compose
     systemctl enable docker && systemctl start docker  # Enable and start docker daemon on boot
-    docker pull mcr.microsoft.com/az-cli  # Pull AZ-CLI docker image
+    docker pull mcr.microsoft.com/azure-cli  # Pull AZ-CLI docker image
     docker pull pacman369/rapture:terraform-controller  # Pull custom terraform container image
     docker pull pacman369/rapture:packer-controller  # Pull custom packer container image
 
