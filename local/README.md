@@ -1,4 +1,4 @@
-# Arch-based 'Rapture-Controller'
+# Arch-based 'Rapture-Proxy'
 
 Target Cloud: Azure
 
