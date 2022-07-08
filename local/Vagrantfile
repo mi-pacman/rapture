@@ -13,11 +13,9 @@ Vagrant.configure("2") do |config|
     systemctl enable systemd-timesyncd  # Enable timesync daemon on boot
     echo "vagrant:changeme" | chpasswd  # Change vagrants password to changeme
     userdel terry  # Delete user terry
-    git clone https://github.com/mi-pacman/rapture-controller.git
-    chown -R vagrant:vagrant /home/vagrant/rapture-controller
-    cp /home/vagrant/rapture-controller/.custom_aliases /home/vagrant/.custom_aliases
-    chown -R vagrant:vagrant /home/vagrant/.custom_aliases
-    source /home/vagrant/.custom_aliases
+    git clone https://github.com/mi-pacman/rapture-controller  # Fetch Rapture modules
+    chown -R vagrant:vagrant /home/vagrant/rapture-controller  # Set permissions on repo
+    cp /home/vagrant/rapture-controller/.bashrc /home/vagrant/.bashrc  # Copy over bash profile
 
     ##########################
     ###DOCKER_CONFIGURATION###
