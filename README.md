@@ -14,4 +14,11 @@
 ```
 Welcome to Rapture! An underground alternative for the 21st century.
 
-The stack architecture draft can be found in "draft-stack.txt".
+This project has the goal at streamlining workflows for provisioning and providing full-stack solutions.
+
+Technologies utilized at Megacorp:
+
+- Terraform
+- Packer
+- Kubernetes
+- Laravel
