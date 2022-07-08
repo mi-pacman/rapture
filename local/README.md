@@ -1,4 +1,4 @@
-# Arch-based 'local-controller'
+# Arch-based 'Rapture-Controller'
 
 Target Cloud: Azure
 
