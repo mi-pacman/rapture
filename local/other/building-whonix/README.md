@@ -1,4 +1,7 @@
-# The build command must be run from inside the derivative-maker folder. "cd derivative-maker" before running build command
+# For building WhonixOS 
+
+
+**The build command must be run from inside the derivative-maker folder. "cd derivative-maker" before running build command**
 
 #COMMAND SYNTAX:
 sudo ~/derivative-maker/derivative-maker --flavor <FLAVOR> --target <TARGET> --arch <ARCHITECTURE> --build
