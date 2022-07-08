@@ -16,6 +16,8 @@ Vagrant.configure("2") do |config|
     git clone https://github.com/mi-pacman/rapture-controller.git
     chown -R vagrant:vagrant /home/vagrant/rapture-controller
     cp /home/vagrant/rapture-controller/.custom_aliases /home/vagrant/.custom_aliases
+    chown -R vagrant:vagrant /home/vagrant/.custom_aliases
+    source /home/vagrant/.custom_aliases
 
     ##########################
     ###DOCKER_CONFIGURATION###
