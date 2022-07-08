@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
     ###SYSTEM_CONFIGURATION###
     ##########################
     timedatectl set-timezone Australia/Adelaide  # Set timezone to Adelaide
-    echo "local-controller" > /etc/hostname  # Change the hostname
+    echo "rapture-controller" > /etc/hostname  # Change the hostname
     systemctl enable systemd-timesyncd  # Enable timesync daemon on boot
     echo "vagrant:changeme" | chpasswd  # Change vagrants password to changeme
     userdel terry  # Delete user terry
