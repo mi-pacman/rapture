@@ -9,14 +9,14 @@ Vagrant.configure("2") do |config|
     ###SYSTEM_CONFIGURATION###
     ##########################
     timedatectl set-timezone Australia/Adelaide  # Set timezone to Adelaide
-    echo "rapture-controller" > /etc/hostname  # Change the hostname
+    echo "rapture-proxy" > /etc/hostname  # Change the hostname
     systemctl enable systemd-timesyncd  # Enable timesync daemon on boot
     echo "vagrant:changeme" | chpasswd  # Change vagrants password to changeme
     userdel terry  # Delete user terry
-    git clone https://github.com/mi-pacman/rapture-controller  # Fetch Rapture modules
-    chown -R vagrant:vagrant /home/vagrant/rapture-controller  # Set permissions on repo
-    rm /home/vagrant/.tmux.conf && cp /home/vagrant/rapture-controller/.tmux.conf /home/vagrant/.tmux.conf
-    cp /home/vagrant/rapture-controller/.bashrc /home/vagrant/.bashrc  # Copy over bash profile
+    git clone https://github.com/mi-pacman/rapture-proxy  # Fetch Rapture modules
+    chown -R vagrant:vagrant /home/vagrant/rapture-proxy  # Set permissions on repo
+    rm /home/vagrant/.tmux.conf && cp /home/vagrant/rapture-proxy/.tmux.conf /home/vagrant/.tmux.conf
+    cp /home/vagrant/rapture-proxy/.bashrc /home/vagrant/.bashrc  # Copy over bash profile
 
     ##########################
     ###DOCKER_CONFIGURATION###
