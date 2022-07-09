@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
     userdel terry  # Delete user terry
     git clone https://github.com/mi-pacman/rapture-controller  # Fetch Rapture modules
     chown -R vagrant:vagrant /home/vagrant/rapture-controller  # Set permissions on repo
+    rm /home/vagrant/.tmux.conf && cp /home/vagrant/rapture-controller/.tmux.conf /home/vagrant/.tmux.conf
     cp /home/vagrant/rapture-controller/.bashrc /home/vagrant/.bashrc  # Copy over bash profile
 
     ##########################
