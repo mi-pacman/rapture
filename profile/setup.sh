@@ -10,5 +10,4 @@ ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
 
 # Installing Oh My Zsh
-pacman -Sy && pacman -S zsh
 sh -c "$(wget -O- https://raw.githubusercontent.com/mi-pacman/ohmyzsh/master/tools/install.sh)"
