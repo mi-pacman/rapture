@@ -10,4 +10,5 @@ ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
 
 # Installing Oh My Zsh
+sudo apt-get update && sudo apt-get install zsch
 sh -c "$(wget -O- https://raw.githubusercontent.com/mi-pacman/ohmyzsh/master/tools/install.sh)"
