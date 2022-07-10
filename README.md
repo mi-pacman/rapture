@@ -14,7 +14,7 @@
 ```
 Welcome to Rapture! An underground alternative for the 21st century.
 
-This project has the goal at streamlining workflows for provisioning and providing full-stack solutions.
+This project has the goal at streamlining workflows for provisioning and providing full-stack privacy-respecting solutions.
 
 Technologies utilized at Megacorp:
 
