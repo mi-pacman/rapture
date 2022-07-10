@@ -19,6 +19,7 @@ This project has the goal at streamlining workflows for provisioning and providi
 Technologies utilized at Megacorp:
 
 - Terraform
+- Vagrant
 - Packer
-- Kubernetes
 - Laravel
+- Kubernetes
