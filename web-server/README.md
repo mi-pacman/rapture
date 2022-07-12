@@ -1,1 +1,1 @@
-# For provisioning the website
+# For provisioning the M.I web server stack
