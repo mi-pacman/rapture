@@ -12,8 +12,7 @@ Vagrant.configure("2") do |config|
     echo "rapture" > /etc/hostname  # Change the hostname
     systemctl enable systemd-timesyncd  # Enable timesync daemon on boot
     echo "vagrant:changeme" | chpasswd  # Change vagrants password to changeme
-    git clone https://github.com/mi-pacman/rapture.git
-    cp /home/vagrant/rapture/.bash_aliases /home/vagrant/.bash_aliases
+    cp /vagrant/bash_aliases /home/vagrant/.bash_aliases
     chown -R vagrant:vagrant /home/vagrant
 
     ##########################
