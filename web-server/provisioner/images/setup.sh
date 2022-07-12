@@ -26,7 +26,11 @@ sudo chown -R terraform /home/terraform/.ssh
 
 # Configure traefik proxy
 sudo mkdir /etc/traefik
-sudo cp ~/rapture/web-server/traefik.yml /etc/traefik/traefik.yml
+sudo cp /vagrant/web-server/traefik.yml /etc/traefik/traefik.yml
+
+# Copy laravel application over
+sudo cp -r /vagrant/web-server/laravel /home/terraform
+sudo chown -R /home/terraform/laravel
 
 # Install Composer & PHP
 sudo add-apt-repository ppa:ondrej/php
