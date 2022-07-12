@@ -13,6 +13,7 @@ Vagrant.configure("2") do |config|
     systemctl enable systemd-timesyncd  # Enable timesync daemon on boot
     echo "vagrant:changeme" | chpasswd  # Change vagrants password to changeme
     git clone https://github.com/mi-pacman/Rapture.git
+    cp rapture/.bash_aliases ~/.bash_aliases
 
     ##########################
     ###DOCKER_CONFIGURATION###
