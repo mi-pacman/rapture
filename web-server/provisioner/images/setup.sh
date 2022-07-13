@@ -7,6 +7,9 @@ sudo apt upgrade -y
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade
 sudo apt install -y -qq tmux curl wget git vim apt-transport-https ca-certificates docker.io
 
+# Clone Rapture
+git clone git@github.com:mi-pacman/rapture
+
 # Setup sudo to allow no-password sudo for "hashicorp" group and adding "terraform" user
 sudo groupadd -r hashicorp
 sudo useradd -m -s /bin/bash terraform
@@ -21,17 +24,18 @@ sudo cp /tmp/tf-packer.pub /home/terraform/.ssh/authorized_keys
 sudo chmod 600 /home/terraform/.ssh/authorized_keys
 sudo chown -R terraform /home/terraform/.ssh
 
-# Install Vim, configure traefik proxy
-git clone --depth=1 https://github.com/mi-pacman/vimrc.git /home/terraform/.vim_runtime
-git clone https://github.com/mi-pacman/rapture-proxy
+# Configure traefik proxy
 sudo mkdir /etc/traefik
-sudo cp ~/rapture-proxy/.traefik.yml /etc/traefik/traefik.yml 
-sh ~/.vim_runtime/install_awesome_vimrc.sh
+sudo cp /vagrant/web-server/traefik.yml /etc/traefik/traefik.yml
+
+# Copy laravel application over
+sudo cp -r /vagrant/web-server/laravel /home/terraform
+sudo chown -R /home/terraform/laravel
 
 # Install Composer & PHP
 sudo add-apt-repository ppa:ondrej/php
 sudo apt update
-sudo apt install -y php8.1 
+sudo apt install -y php8.1
 sudo apt install -y php-xml php-curl zip unzip docker-compose
 curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
 sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
