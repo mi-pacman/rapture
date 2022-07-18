@@ -1,4 +1,7 @@
 .vagrant
+.terraform*
+terraform*
+tf-packer*
 
 /node_modules
 /public/hot
