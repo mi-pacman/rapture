@@ -1,1 +1,1 @@
-# For provisioning a FreeIPA server
+# For provisioning the M.I web server stack
