@@ -2,35 +2,19 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "terrywang/archlinux"
 
-  config.vm.provision "shell", inline: <<-SHELL
-    ##########################
-    ###SYSTEM_CONFIGURATION###
-    ##########################
-    timedatectl set-timezone Australia/Adelaide  # Set timezone to Adelaide
-    echo "rapture" > /etc/hostname  # Change the hostname
-    systemctl enable systemd-timesyncd  # Enable timesync daemon on boot
-    echo "vagrant:changeme" | chpasswd  # Change vagrants password to changeme
-    cp /vagrant/bash_aliases /home/vagrant/.bash_aliases
-    chown -R vagrant:vagrant /home/vagrant
-
-    ##########################
-    ###DOCKER_CONFIGURATION###
-    ##########################
-    pacman -Sy  # Update repos
-    pacman -S --noconfirm docker docker-compose  # Update repositories, install docker and compose
-    systemctl enable docker && systemctl start docker  # Enable and start docker daemon on boot
-    docker pull midockerdb/terraform-controller:0.1.2  # Pull custom terraform container image
-    docker pull midockerdb/packer-controller:0.1.2  # Pull custom packer container image
-    
-    #########################
-    ###CLOUD_CONFIGURATION###
-    #########################
-    mkdir /home/vagrant/.aws
-    echo "[default]\naws_access_key_id = <ACCESS_KEY>\naws_secret_access_key = <SECRET_KEY>" > .aws/credentials
-    chown -R vagrant:vagrant /home/vagrant/.aws
-
-    reboot
-  SHELL
+  #Arch Controller
+  config.vm.define "Master Controller" do |arch|
+    arch.vm.box = "terrywang/archlinux"
+    arch.vm.network "private_network", ip: "172.16.0.10", virtualbox__intnet: true
+    arch.vm.hostname = "master-controller"
+    arch.vm.provider "virtualbox" do |vb|
+      vb.gui = false
+      vb.name = "master"
+      vb.cpus = 1
+      vb.memory = 1024
+    end
+  arch.vm.synced_folder "./web-server", "/home/vagrant/web-server"
+  arch.vm.provision "shell", path: "scripts/setup-arch.sh"
+  end 
 end
